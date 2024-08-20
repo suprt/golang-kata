@@ -73,9 +73,7 @@ func main() {
 	InputStr := Read()
 	SplitStr := strings.Split(InputStr, " ")
 	if len(SplitStr) != 3 {
-		errcond = true
-		fmt.Println("Error")
-		os.Exit(0)
+		panic("Формат операции не удовлетворяет условию")
 	}
 	arab1 = digitCheck.MatchString(SplitStr[0])
 	arab2 = digitCheck.MatchString(SplitStr[2])
@@ -93,8 +91,7 @@ func main() {
 		errcond = true
 	}
 	if errcond == true {
-		fmt.Println("Error")
-		os.Exit(0)
+		panic("Используются арабские и римские цифры одновременно")
 	}
 	if rome == true {
 		a = romeToArab[SplitStr[0]]
@@ -111,8 +108,7 @@ func main() {
 	}
 	var c int
 	if a > 10 || b > 10 {
-		fmt.Println("Error")
-		os.Exit(0)
+		panic("Входные значения больше 10")
 	}
 	switch SplitStr[1] {
 	case "+":
@@ -124,12 +120,10 @@ func main() {
 	case "*":
 		c = a * b
 	default:
-		fmt.Println("Error")
-		os.Exit(0)
+		panic("Строка не является математической операцией")
 	}
 	if rome == true && c <= 0 {
-		fmt.Println("Error")
-		os.Exit(0)
+		panic("В римской системе счисления нет отрицательных чисел")
 	}
 	if rome == true {
 		fmt.Println(arabToRome[c])
